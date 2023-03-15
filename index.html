@@ -1,0 +1,27 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <a href="home"> Переход на другую страницу</a>
+
+        <script src="/socket.io/socket.io.js"> </script> <br>
+            <input type="button" value="Отправить на сервер" onclick="func1()"> <br> 
+            <input type="text" id="e1">
+                
+        
+            <script>
+                const socket = io(); //подключение библиотеки socket.io для клиента
+
+                function func1(){ // функция с вызовом 
+                    var text = document.getElementById("e1").value; //копирование текста из текстового поля в переменную
+                        socket.emit("otprevkaTexta", text); //отправка текста из текстового поля на сервер
+                }
+
+                socket.on("otvet", function(text2){ //блок с принятием ответа сервера в виде модифицированного текста
+                    console.log(text2); //вывод модифицированного текста в консоль браузера
+                });
+            </script>
+</body>
+</html>
